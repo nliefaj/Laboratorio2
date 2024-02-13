@@ -43,6 +43,9 @@ SETUP:
 	SBI DDRB,PB0 ;HABILITANDO PB1 COMO SALIDA
 	CBI PORTB, PB0 ;apagar el pb1 del puerto b
 
+	SBI DDRB,PB5 ;HABILITANDO PB1 COMO SALIDA
+	CBI PORTB, PB5 ;apagar el pb1 del puerto b
+
 	LDI R16,0b1111_1110
 	OUT DDRD,r16; habilita el portD como salida
 
@@ -85,7 +88,7 @@ mostrar:
 
 	SBI TIFR0,TOV0
 
-	INC R20
+	INC R20  
 	CPI R20,100 //para que cumpla el segundo
 	BRNE LOOP
 	CLR R20
