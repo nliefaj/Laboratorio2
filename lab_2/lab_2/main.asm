@@ -40,8 +40,8 @@ SETUP:
 	SBI DDRB,PB4 ;HABILITANDO PB1 COMO SALIDA
 	CBI PORTB, PB4 ;apagar el pb1 del puerto b
 
-	SBI DDRB,PB5 ;HABILITANDO PB1 COMO SALIDA
-	CBI PORTB, PB5 ;apagar el pb1 del puerto b
+	SBI DDRB,PB0 ;HABILITANDO PB1 COMO SALIDA
+	CBI PORTB, PB0 ;apagar el pb1 del puerto b
 
 	LDI R16,0b1111_1110
 	OUT DDRD,r16; habilita el portD como salida
@@ -58,6 +58,11 @@ SETUP:
 	CALL timer_0
 	LDI R20,0
 	LDI R21,0b0000_0000
+
+	//carga el 0
+	LPM R16,Z //Load from program memory R16
+	LSL R16
+	OUT PORTD,R16
 
 LOOP:
 	//BOTONES
@@ -81,12 +86,21 @@ mostrar:
 	SBI TIFR0,TOV0
 
 	INC R20
-	CPI R20,10 //para que cumpla el segundo
+	CPI R20,100 //para que cumpla el segundo
 	BRNE LOOP
-	;CLR R20
-
-	OUT PORTB,R20
 	CLR R20
+
+	INC R21
+	OUT PORTB,R21
+	CALL COMPARE
+
+	CPI R21,0b0001_0000
+	BRGE overflow2
+	RJMP LOOP
+
+overflow2:
+	LDI R21,0b0000
+	OUT PORTB, R21
 	RJMP LOOP
 
 btn1:
@@ -99,7 +113,7 @@ btn1:
 btn2:
 	NOP
 	CALL delaybounce//espera a que el botón no esté presionado, de lo contrario sigue con el resto
-	SBIS PINC, PC0
+	SBIS PINC, PC1
 	JMP btn2
 	RJMP resta //llama a etiqueta de incrementar contador
 
@@ -109,7 +123,6 @@ timer_0:
 	
 	LDI R16,100
 	OUT TCNT0,R16
-	
 	RET 
 
 delaybounce:
@@ -130,7 +143,6 @@ suma:
 	LPM R16,Z //Load from program memory R16
 	LSL R16
 	OUT PORTD,R16
-	;CALL COMPARE
 	RJMP LOOP
 	
 //resta de 7SEG
@@ -146,7 +158,6 @@ resta:
 	LPM r16,Z
 	LSL R16
 	OUT PORTD,R16
-	;CALL COMPARE
 	RJMP LOOP
 
 overflow:
@@ -167,13 +178,21 @@ reset:
 	OUT PORTD,R16
 	RJMP LOOP
 
-/*COMPARE:
-	CP R20,R24
+COMPARE:
+	CP R21,R24
 	BREQ LD_COMP
 	JMP LOOP
 
 LD_COMP:
-	SBIS*/
+	SBIS PORTB, PB4 //bit en el registro encendido
+	JMP PWR 
+	CBI PORTB,PB5
+	CLR R21
+	RJMP LOOP
+PWR:
+	SBI PORTB,PB5
+	CLR R21
+	RJMP LOOP
 
 //*******************************************************************
 //TABLA DE VALORES
