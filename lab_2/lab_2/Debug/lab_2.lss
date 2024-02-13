@@ -1,5 +1,5 @@
 
-AVRASM ver. 2.2.8  C:\Users\lefaj\Documents\Atmel Studio\7.0\laboratorio_2\Laboratorio2\lab_2\lab_2\main.asm Mon Feb 12 23:32:59 2024
+AVRASM ver. 2.2.8  C:\Users\lefaj\Documents\Atmel Studio\7.0\laboratorio_2\Laboratorio2\lab_2\lab_2\main.asm Tue Feb 13 01:31:35 2024
 
 [builtin](2): Including file 'D:/microchip_studio\7.0\Packs\atmel\ATmega_DFP\1.7.374\avrasm\inc\m328Pdef.inc'
 C:\Users\lefaj\Documents\Atmel Studio\7.0\laboratorio_2\Laboratorio2\lab_2\lab_2\main.asm(12): Including file 'D:/microchip_studio\7.0\Packs\atmel\ATmega_DFP\1.7.374\avrasm\inc\M328PDEF.inc'
@@ -1052,157 +1052,148 @@ C:\Users\lefaj\Documents\Atmel Studio\7.0\laboratorio_2\Laboratorio2\lab_2\lab_2
 000003 bf1e                      OUT SPH, R17
                                  .DEF count=R24
                                  //*******************************************************************
-                                 //TABLA DE VALORES
-                                 //*******************************************************************
-000004 063f
-000005 4f5b
-000006 6d66
-000007 077d
-000008 6f7f
-000009 7c77
-00000a 5e39
-00000b 7179                      TABLA7SEG: .DB 0x3F,0x06,0x5B,0x4F,0x66,0x6D,0x7D,0x07,0x7F,0x6F,0x77,0x7C,0x39,0x5E,0x79,0x71; Hacer tabla de verdad para ver bien los números
-                                 //*******************************************************************
                                  //CONFIGURACION
                                  //*******************************************************************
                                  MAIN:
-00000c e0f0                      	LDI ZH, HIGH(TABLA7SEG<<1)
-00000d e0e8                      	LDI ZL, LOW(TABLA7SEG<<1)
-00000e 0fe0                      	ADD ZL, R16
-00000f 9104                      	LPM R16,Z
+000004 e0f0                      	LDI ZH, HIGH(TABLA7SEG<<1)
+000005 ede2                      	LDI ZL, LOW(TABLA7SEG<<1)
+000006 9104                      	LPM R16,Z
                                  SETUP:
-000010 9a21                      	SBI DDRB,PB1 ;HABILITANDO PB1 COMO SALIDA
-000011 9829                      	CBI PORTB, PB1 ;apagar el pb1 del puerto b
+000007 9a21                      	SBI DDRB,PB1 ;HABILITANDO PB1 COMO SALIDA
+000008 9829                      	CBI PORTB, PB1 ;apagar el pb1 del puerto b
                                  
-000012 9a22                      	SBI DDRB,PB2 ;HABILITANDO PB1 COMO SALIDA
-000013 982a                      	CBI PORTB, PB2;apagar el pb1 del puerto b
+000009 9a22                      	SBI DDRB,PB2 ;HABILITANDO PB1 COMO SALIDA
+00000a 982a                      	CBI PORTB, PB2;apagar el pb1 del puerto b
                                  
-000014 9a23                      	SBI DDRB,PB3 ;HABILITANDO PB1 COMO SALIDA
-000015 982b                      	CBI PORTB, PB3 ;apagar el pb1 del puerto b
+00000b 9a23                      	SBI DDRB,PB3 ;HABILITANDO PB1 COMO SALIDA
+00000c 982b                      	CBI PORTB, PB3 ;apagar el pb1 del puerto b
                                  
-000016 9a24                      	SBI DDRB,PB4 ;HABILITANDO PB1 COMO SALIDA
-000017 982c                      	CBI PORTB, PB4 ;apagar el pb1 del puerto b
+00000d 9a24                      	SBI DDRB,PB4 ;HABILITANDO PB1 COMO SALIDA
+00000e 982c                      	CBI PORTB, PB4 ;apagar el pb1 del puerto b
                                  
-000018 9a25                      	SBI DDRB,PB5 ;HABILITANDO PB1 COMO SALIDA
-000019 982d                      	CBI PORTB, PB5 ;apagar el pb1 del puerto b
+00000f 9a25                      	SBI DDRB,PB5 ;HABILITANDO PB1 COMO SALIDA
+000010 982d                      	CBI PORTB, PB5 ;apagar el pb1 del puerto b
                                  
-00001a ef0e                      	LDI R16,0b1111_1110
-00001b b90a                      	OUT DDRD,r16; habilita el portD como salida
+000011 ef0e                      	LDI R16,0b1111_1110
+000012 b90a                      	OUT DDRD,r16; habilita el portD como salida
                                  
-00001c e000                      	LDI R16,0b0000_0000
-00001d b907                      	OUT DDRC,R16 //portc como inputs
+000013 e000                      	LDI R16,0b0000_0000
+000014 b907                      	OUT DDRC,R16 //portc como inputs
                                  
-00001e e003                      	LDI R16,0b0011
-00001f b908                      	OUT PORTC,R16 ;pullup para los botones
+000015 e003                      	LDI R16,0b0011
+000016 b908                      	OUT PORTC,R16 ;pullup para los botones
                                  
-000020 e000                      	LDI R16,0
-000021 9300 00c1                 	STS UCSR0B,R16
+000017 e000                      	LDI R16,0
+000018 9300 00c1                 	STS UCSR0B,R16
                                  
-000023 940e 0046                 	CALL timer_0
-000025 e040                      	LDI R20,0
-000026 e050                      	LDI R21,0b0000_0000
+00001a 940e 003e                 	CALL timer_0
+00001c e040                      	LDI R20,0
+00001d e050                      	LDI R21,0b0000_0000
                                  
                                  LOOP:
                                  	//BOTONES
-000027 b106                      	IN r16, PINC//PinC presionado o no
-000028 ff00                      	SBRS r16,PC0 
-000029 c00e                      	RJMP btn1
+00001e b106                      	IN r16, PINC//PinC presionado o no
+00001f ff00                      	SBRS r16,PC0 
+000020 c00f                      	RJMP btn1
                                  
-00002a b106                      	IN r16, PINC//PinC presionado o no
-00002b ff01                      	SBRS r16,PC1 
-00002c c012                      	RJMP btn2
+000021 b106                      	IN r16, PINC//PinC presionado o no
+000022 ff01                      	SBRS r16,PC1 
+000023 c013                      	RJMP btn2
                                  
                                  reloj:
-00002d b305                      	IN R16,TIFR0
-00002e ff00                      	SBRS R16,TOV0
-00002f f7b9                      	BRNE LOOP
-                                 
+000024 b305                      	IN R16,TIFR0
+000025 ff00                      	SBRS R16,TOV0
+000026 cff7                      	RJMP LOOP
                                  
                                  mostrar:
-000030 e604                      	LDI R16,100 // carga el valor de desbordamiento
-000031 bd06                      	OUT TCNT0,R16; carga el valor inicial al contador
+000027 e604                      	LDI R16,100 // carga el valor de desbordamiento
+000028 bd06                      	OUT TCNT0,R16; carga el valor inicial al contador
                                  
-000032 9aa8                      	SBI TIFR0,TOV0
+000029 9aa8                      	SBI TIFR0,TOV0
                                  
-000033 9543                      	INC R20
-000034 3644                      	CPI R20,100
-000035 f789                      	BRNE LOOP
-000036 2744                      	CLR R20
-000037 b945                      	OUT PORTB,R20
+00002a 9543                      	INC R20
+00002b 304a                      	CPI R20,10
+00002c f789                      	BRNE LOOP
+00002d 2744                      	CLR R20
+                                 
+00002e b945                      	OUT PORTB,R20
+00002f cfee                      	RJMP LOOP
                                  
                                  btn1:
-000038 0000                      	NOP
-000039 940e 004b                 	CALL delaybounce//espera a que el botón no esté presionado, de lo contrario sigue con el resto
-00003b 9b30                      	SBIS PINC, PC0
-00003c 940c 0038                 	JMP btn1
-00003e c010                      	RJMP suma //llama a etiqueta de incrementar contador
+000030 0000                      	NOP
+000031 940e 0043                 	CALL delaybounce//espera a que el botón no esté presionado, de lo contrario sigue con el resto
+000033 9b30                      	SBIS PINC, PC0
+000034 940c 0030                 	JMP btn1
+000036 c010                      	RJMP suma //llama a etiqueta de incrementar contador
                                  
                                  btn2:
-00003f 0000                      	NOP
-000040 940e 004b                 	CALL delaybounce//espera a que el botón no esté presionado, de lo contrario sigue con el resto
-000042 9b30                      	SBIS PINC, PC0
-000043 940c 003f                 	JMP btn2
-000045 c012                      	RJMP resta //llama a etiqueta de incrementar contador
+000037 0000                      	NOP
+000038 940e 0043                 	CALL delaybounce//espera a que el botón no esté presionado, de lo contrario sigue con el resto
+00003a 9b30                      	SBIS PINC, PC0
+00003b 940c 0037                 	JMP btn2
+00003d c013                      	RJMP resta //llama a etiqueta de incrementar contador
                                  
                                  timer_0:
-000046 e005                      	LDI R16,(1<<CS02)|(1<<CS00)//configura el prescaler a 1024 //nombre del bit que quiero encender
-000047 bd05                      	OUT TCCR0B,R16
+00003e e005                      	LDI R16,(1<<CS02)|(1<<CS00)//configura el prescaler a 1024 //nombre del bit que quiero encender
+00003f bd05                      	OUT TCCR0B,R16
                                  	
-000048 e604                      	LDI R16,100
-000049 bd06                      	OUT TCNT0,R16
+000040 e604                      	LDI R16,100
+000041 bd06                      	OUT TCNT0,R16
                                  	
-00004a 9508                      	RET 
+000042 9508                      	RET 
                                  
                                  delaybounce:
-00004b e604                      	LDI r16,100
+000043 e604                      	LDI r16,100
                                  	delay:
-00004c 950a                      		DEC r16
-00004d f7f1                      		BRNE delay
-00004e 9508                      	RET
+000044 950a                      		DEC r16
+000045 f7f1                      		BRNE delay
+000046 9508                      	RET
                                  
                                  //Sumador de 7SEG
                                  suma:
-00004f 9583                      	INC count
-000050 3180                      	CPI count,0b0001_0000
-000051 f47c                      	BRGE overflow
-000052 e071                      	LDI R23,1
-000053 0fe7                      	ADD ZL,R23
-000054 9104                      	LPM R16,Z //Load from program memory R16
-000055 0f00                      	LSL R16
-000056 b90b                      	OUT PORTD,R16
+000047 9583                      	INC count
+000048 3180                      	CPI count,0b0001_0000
+000049 f48c                      	BRGE overflow
+00004a e0f0                      	LDI ZH, HIGH(TABLA7SEG<<1)
+00004b ede2                      	LDI ZL, LOW(TABLA7SEG<<1)
+00004c 0fe8                      	ADD ZL,count
+00004d 9104                      	LPM R16,Z //Load from program memory R16
+00004e 0f00                      	LSL R16
+00004f b90b                      	OUT PORTD,R16
                                  	;CALL COMPARE
-000057 cfcf                      	RJMP LOOP
+000050 cfcd                      	RJMP LOOP
                                  	
                                  //resta de 7SEG
                                  resta:
-000058 e071                      	LDI R23,1
-000059 1be7                      	SUB ZL,R23
-00005a 958a                      	DEC count
-00005b 3f8f                      	CPI count,0xFF
-00005c f059                      	BREQ reset
-00005d 9104                      	LPM r16,Z
-00005e 0f00                      	LSL R16
-00005f b90b                      	OUT PORTD,R16
+000051 958a                      	DEC count
+000052 3f8f                      	CPI count,0xFF
+000053 f071                      	BREQ reset
+000054 e0f0                      	LDI ZH, HIGH(TABLA7SEG<<1)
+000055 ede2                      	LDI ZL, LOW(TABLA7SEG<<1)
+000056 0fe8                      	ADD ZL,count
+000057 9104                      	LPM r16,Z
+000058 0f00                      	LSL R16
+000059 b90b                      	OUT PORTD,R16
                                  	;CALL COMPARE
-000060 cfc6                      	RJMP LOOP
+00005a cfc3                      	RJMP LOOP
                                  
                                  overflow:
-000061 e080                      	LDI count,0b0000
-000062 e00f                      	LDI R16,15
-000063 1be0                      	SUB ZL,R16
-000064 9104                      	LPM R16,Z
-000065 0f00                      	LSL R16
-000066 b90b                      	OUT PORTD,R16
-000067 cfbf                      	RJMP LOOP
+00005b e080                      	LDI count,0b0000
+00005c e00f                      	LDI R16,15
+00005d 1be0                      	SUB ZL,R16
+00005e 9104                      	LPM R16,Z
+00005f 0f00                      	LSL R16
+000060 b90b                      	OUT PORTD,R16
+000061 cfbc                      	RJMP LOOP
                                  
                                  reset:
-000068 e080                      	LDI count,0b0000
-000069 e00f                      	LDI R16,15
-00006a 0fe0                      	ADD ZL,R16
-00006b 9104                      	LPM R16,Z
-00006c 0f00                      	LSL R16
-00006d b90b                      	OUT PORTD,R16
-00006e cfb8                      	RJMP LOOP
+000062 e080                      	LDI count,0b0000
+000063 e0f0                      	LDI ZH, HIGH(TABLA7SEG<<1)
+000064 ede2                      	LDI ZL, LOW(TABLA7SEG<<1)
+000065 9104                      	LPM R16,Z
+000066 0f00                      	LSL R16
+000067 b90b                      	OUT PORTD,R16
+000068 cfb5                      	RJMP LOOP
                                  
                                  /*COMPARE:
                                  	CP R20,R24
@@ -1211,6 +1202,18 @@ C:\Users\lefaj\Documents\Atmel Studio\7.0\laboratorio_2\Laboratorio2\lab_2\lab_2
                                  
                                  LD_COMP:
                                  	SBIS*/
+                                 
+                                 //*******************************************************************
+                                 //TABLA DE VALORES
+                                 //*******************************************************************
+000069 063f
+00006a 4f5b
+00006b 6d66
+00006c 077d
+00006d 6f7f
+00006e 7c77
+00006f 5e39
+000070 7179                      TABLA7SEG: .DB 0x3F,0x06,0x5B,0x4F,0x66,0x6D,0x7D,0x07,0x7F,0x6F,0x77,0x7C,0x39,0x5E,0x79,0x71; Hacer tabla de verdad para ver bien los números
                                  
                                  
 
@@ -1232,37 +1235,37 @@ counted separately from r26..r31 here.
 "ATmega328P" register use summary:
 x  :   0 y  :   0 z  :   5 r0 :   0 r1 :   0 r2 :   0 r3 :   0 r4 :   0 
 r5 :   0 r6 :   0 r7 :   0 r8 :   0 r9 :   0 r10:   0 r11:   0 r12:   0 
-r13:   0 r14:   0 r15:   0 r16:  42 r17:   2 r18:   0 r19:   0 r20:   5 
-r21:   1 r22:   0 r23:   4 r24:   6 r25:   0 r26:   0 r27:   0 r28:   0 
-r29:   0 r30:   6 r31:   1 
-Registers used: 9 out of 35 (25.7%)
+r13:   0 r14:   0 r15:   0 r16:  39 r17:   2 r18:   0 r19:   0 r20:   5 
+r21:   1 r22:   0 r23:   0 r24:   8 r25:   0 r26:   0 r27:   0 r28:   0 
+r29:   0 r30:   7 r31:   4 
+Registers used: 8 out of 35 (22.9%)
 
 "ATmega328P" instruction use summary:
-.lds  :   0 .sts  :   0 adc   :   0 add   :   3 adiw  :   0 and   :   0 
+.lds  :   0 .sts  :   0 adc   :   0 add   :   2 adiw  :   0 and   :   0 
 andi  :   0 asr   :   0 bclr  :   0 bld   :   0 brbc  :   0 brbs  :   0 
 brcc  :   0 brcs  :   0 break :   0 breq  :   1 brge  :   1 brhc  :   0 
 brhs  :   0 brid  :   0 brie  :   0 brlo  :   0 brlt  :   0 brmi  :   0 
-brne  :   3 brpl  :   0 brsh  :   0 brtc  :   0 brts  :   0 brvc  :   0 
+brne  :   2 brpl  :   0 brsh  :   0 brtc  :   0 brts  :   0 brvc  :   0 
 brvs  :   0 bset  :   0 bst   :   0 call  :   3 cbi   :   5 cbr   :   0 
 clc   :   0 clh   :   0 cli   :   0 cln   :   0 clr   :   1 cls   :   0 
 clt   :   0 clv   :   0 clz   :   0 com   :   0 cp    :   0 cpc   :   0 
 cpi   :   3 cpse  :   0 dec   :   2 eor   :   0 fmul  :   0 fmuls :   0 
 fmulsu:   0 icall :   0 ijmp  :   0 in    :   3 inc   :   2 jmp   :   2 
-ld    :   0 ldd   :   0 ldi   :  20 lds   :   0 lpm   :  10 lsl   :   4 
+ld    :   0 ldd   :   0 ldi   :  23 lds   :   0 lpm   :  10 lsl   :   4 
 lsr   :   0 mov   :   0 movw  :   0 mul   :   0 muls  :   0 mulsu :   0 
 neg   :   0 nop   :   2 or    :   0 ori   :   0 out   :  13 pop   :   0 
-push  :   0 rcall :   0 ret   :   2 reti  :   0 rjmp  :   8 rol   :   0 
+push  :   0 rcall :   0 ret   :   2 reti  :   0 rjmp  :  10 rol   :   0 
 ror   :   0 sbc   :   0 sbci  :   0 sbi   :   6 sbic  :   0 sbis  :   2 
 sbiw  :   0 sbr   :   0 sbrc  :   0 sbrs  :   3 sec   :   0 seh   :   0 
 sei   :   0 sen   :   0 ser   :   0 ses   :   0 set   :   0 sev   :   0 
 sez   :   0 sleep :   0 spm   :   0 st    :   0 std   :   0 sts   :   1 
-sub   :   2 subi  :   0 swap  :   0 tst   :   0 wdr   :   0 
+sub   :   1 subi  :   0 swap  :   0 tst   :   0 wdr   :   0 
 Instructions used: 24 out of 113 (21.2%)
 
 "ATmega328P" memory use summary [bytes]:
 Segment   Begin    End      Code   Data   Used    Size   Use%
 ---------------------------------------------------------------
-[.cseg] 0x000000 0x0000de    206     16    222   32768   0.7%
+[.cseg] 0x000000 0x0000e2    210     16    226   32768   0.7%
 [.dseg] 0x000100 0x000100      0      0      0    2048   0.0%
 [.eseg] 0x000000 0x000000      0      0      0    1024   0.0%
 

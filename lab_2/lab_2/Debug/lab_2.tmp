@@ -23,20 +23,20 @@
   <FILE>lab_2.lss</FILE>
  </OUTPUT_FILES>
  <LABELS>
-  <TABLA7SEG><FILE>C:\Users\lefaj\Documents\Atmel Studio\7.0\laboratorio_2\Laboratorio2\lab_2\lab_2\main.asm</FILE><LINE>26</LINE></TABLA7SEG>
-  <MAIN><FILE>C:\Users\lefaj\Documents\Atmel Studio\7.0\laboratorio_2\Laboratorio2\lab_2\lab_2\main.asm</FILE><LINE>30</LINE></MAIN>
-  <SETUP><FILE>C:\Users\lefaj\Documents\Atmel Studio\7.0\laboratorio_2\Laboratorio2\lab_2\lab_2\main.asm</FILE><LINE>35</LINE></SETUP>
-  <timer_0><FILE>C:\Users\lefaj\Documents\Atmel Studio\7.0\laboratorio_2\Laboratorio2\lab_2\lab_2\main.asm</FILE><LINE>109</LINE></timer_0>
-  <LOOP><FILE>C:\Users\lefaj\Documents\Atmel Studio\7.0\laboratorio_2\Laboratorio2\lab_2\lab_2\main.asm</FILE><LINE>67</LINE></LOOP>
-  <btn1><FILE>C:\Users\lefaj\Documents\Atmel Studio\7.0\laboratorio_2\Laboratorio2\lab_2\lab_2\main.asm</FILE><LINE>95</LINE></btn1>
-  <btn2><FILE>C:\Users\lefaj\Documents\Atmel Studio\7.0\laboratorio_2\Laboratorio2\lab_2\lab_2\main.asm</FILE><LINE>102</LINE></btn2>
-  <reloj><FILE>C:\Users\lefaj\Documents\Atmel Studio\7.0\laboratorio_2\Laboratorio2\lab_2\lab_2\main.asm</FILE><LINE>77</LINE></reloj>
-  <mostrar><FILE>C:\Users\lefaj\Documents\Atmel Studio\7.0\laboratorio_2\Laboratorio2\lab_2\lab_2\main.asm</FILE><LINE>83</LINE></mostrar>
-  <delaybounce><FILE>C:\Users\lefaj\Documents\Atmel Studio\7.0\laboratorio_2\Laboratorio2\lab_2\lab_2\main.asm</FILE><LINE>118</LINE></delaybounce>
-  <suma><FILE>C:\Users\lefaj\Documents\Atmel Studio\7.0\laboratorio_2\Laboratorio2\lab_2\lab_2\main.asm</FILE><LINE>126</LINE></suma>
-  <resta><FILE>C:\Users\lefaj\Documents\Atmel Studio\7.0\laboratorio_2\Laboratorio2\lab_2\lab_2\main.asm</FILE><LINE>139</LINE></resta>
-  <delay><FILE>C:\Users\lefaj\Documents\Atmel Studio\7.0\laboratorio_2\Laboratorio2\lab_2\lab_2\main.asm</FILE><LINE>120</LINE></delay>
-  <overflow><FILE>C:\Users\lefaj\Documents\Atmel Studio\7.0\laboratorio_2\Laboratorio2\lab_2\lab_2\main.asm</FILE><LINE>151</LINE></overflow>
-  <reset><FILE>C:\Users\lefaj\Documents\Atmel Studio\7.0\laboratorio_2\Laboratorio2\lab_2\lab_2\main.asm</FILE><LINE>160</LINE></reset>
+  <MAIN><FILE>C:\Users\lefaj\Documents\Atmel Studio\7.0\laboratorio_2\Laboratorio2\lab_2\lab_2\main.asm</FILE><LINE>26</LINE></MAIN>
+  <TABLA7SEG><FILE>C:\Users\lefaj\Documents\Atmel Studio\7.0\laboratorio_2\Laboratorio2\lab_2\lab_2\main.asm</FILE><LINE>178</LINE></TABLA7SEG>
+  <SETUP><FILE>C:\Users\lefaj\Documents\Atmel Studio\7.0\laboratorio_2\Laboratorio2\lab_2\lab_2\main.asm</FILE><LINE>30</LINE></SETUP>
+  <timer_0><FILE>C:\Users\lefaj\Documents\Atmel Studio\7.0\laboratorio_2\Laboratorio2\lab_2\lab_2\main.asm</FILE><LINE>105</LINE></timer_0>
+  <LOOP><FILE>C:\Users\lefaj\Documents\Atmel Studio\7.0\laboratorio_2\Laboratorio2\lab_2\lab_2\main.asm</FILE><LINE>62</LINE></LOOP>
+  <btn1><FILE>C:\Users\lefaj\Documents\Atmel Studio\7.0\laboratorio_2\Laboratorio2\lab_2\lab_2\main.asm</FILE><LINE>91</LINE></btn1>
+  <btn2><FILE>C:\Users\lefaj\Documents\Atmel Studio\7.0\laboratorio_2\Laboratorio2\lab_2\lab_2\main.asm</FILE><LINE>98</LINE></btn2>
+  <reloj><FILE>C:\Users\lefaj\Documents\Atmel Studio\7.0\laboratorio_2\Laboratorio2\lab_2\lab_2\main.asm</FILE><LINE>72</LINE></reloj>
+  <mostrar><FILE>C:\Users\lefaj\Documents\Atmel Studio\7.0\laboratorio_2\Laboratorio2\lab_2\lab_2\main.asm</FILE><LINE>77</LINE></mostrar>
+  <delaybounce><FILE>C:\Users\lefaj\Documents\Atmel Studio\7.0\laboratorio_2\Laboratorio2\lab_2\lab_2\main.asm</FILE><LINE>114</LINE></delaybounce>
+  <suma><FILE>C:\Users\lefaj\Documents\Atmel Studio\7.0\laboratorio_2\Laboratorio2\lab_2\lab_2\main.asm</FILE><LINE>122</LINE></suma>
+  <resta><FILE>C:\Users\lefaj\Documents\Atmel Studio\7.0\laboratorio_2\Laboratorio2\lab_2\lab_2\main.asm</FILE><LINE>136</LINE></resta>
+  <delay><FILE>C:\Users\lefaj\Documents\Atmel Studio\7.0\laboratorio_2\Laboratorio2\lab_2\lab_2\main.asm</FILE><LINE>116</LINE></delay>
+  <overflow><FILE>C:\Users\lefaj\Documents\Atmel Studio\7.0\laboratorio_2\Laboratorio2\lab_2\lab_2\main.asm</FILE><LINE>149</LINE></overflow>
+  <reset><FILE>C:\Users\lefaj\Documents\Atmel Studio\7.0\laboratorio_2\Laboratorio2\lab_2\lab_2\main.asm</FILE><LINE>158</LINE></reset>
  </LABELS>
 </ASSEMBLER_INFO>

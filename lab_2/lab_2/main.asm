@@ -21,16 +21,11 @@ LDI R17,HIGH (RAMEND)
 OUT SPH, R17
 .DEF count=R24
 //*******************************************************************
-//TABLA DE VALORES
-//*******************************************************************
-TABLA7SEG: .DB 0x3F,0x06,0x5B,0x4F,0x66,0x6D,0x7D,0x07,0x7F,0x6F,0x77,0x7C,0x39,0x5E,0x79,0x71; Hacer tabla de verdad para ver bien los números
-//*******************************************************************
 //CONFIGURACION
 //*******************************************************************
 MAIN:
 	LDI ZH, HIGH(TABLA7SEG<<1)
 	LDI ZL, LOW(TABLA7SEG<<1)
-	ADD ZL, R16
 	LPM R16,Z
 SETUP:
 	SBI DDRB,PB1 ;HABILITANDO PB1 COMO SALIDA
@@ -77,8 +72,7 @@ LOOP:
 reloj:
 	IN R16,TIFR0
 	SBRS R16,TOV0
-	BRNE LOOP
-
+	RJMP LOOP
 
 mostrar:
 	LDI R16,100 // carga el valor de desbordamiento
@@ -87,10 +81,12 @@ mostrar:
 	SBI TIFR0,TOV0
 
 	INC R20
-	CPI R20,100
+	CPI R20,10
 	BRNE LOOP
 	CLR R20
+
 	OUT PORTB,R20
+	RJMP LOOP
 
 btn1:
 	NOP
@@ -127,8 +123,9 @@ suma:
 	INC count
 	CPI count,0b0001_0000
 	BRGE overflow
-	LDI R23,1
-	ADD ZL,R23
+	LDI ZH, HIGH(TABLA7SEG<<1)
+	LDI ZL, LOW(TABLA7SEG<<1)
+	ADD ZL,count
 	LPM R16,Z //Load from program memory R16
 	LSL R16
 	OUT PORTD,R16
@@ -137,11 +134,12 @@ suma:
 	
 //resta de 7SEG
 resta:
-	LDI R23,1
-	SUB ZL,R23
 	DEC count
 	CPI count,0xFF
 	BREQ reset
+	LDI ZH, HIGH(TABLA7SEG<<1)
+	LDI ZL, LOW(TABLA7SEG<<1)
+	ADD ZL,count
 	LPM r16,Z
 	LSL R16
 	OUT PORTD,R16
@@ -159,8 +157,8 @@ overflow:
 
 reset:
 	LDI count,0b0000
-	LDI R16,15
-	ADD ZL,R16
+	LDI ZH, HIGH(TABLA7SEG<<1)
+	LDI ZL, LOW(TABLA7SEG<<1)
 	LPM R16,Z
 	LSL R16
 	OUT PORTD,R16
@@ -173,5 +171,10 @@ reset:
 
 LD_COMP:
 	SBIS*/
+
+//*******************************************************************
+//TABLA DE VALORES
+//*******************************************************************
+TABLA7SEG: .DB 0x3F,0x06,0x5B,0x4F,0x66,0x6D,0x7D,0x07,0x7F,0x6F,0x77,0x7C,0x39,0x5E,0x79,0x71; Hacer tabla de verdad para ver bien los números
 
 
