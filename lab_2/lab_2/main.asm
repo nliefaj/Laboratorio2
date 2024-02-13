@@ -81,11 +81,12 @@ mostrar:
 	SBI TIFR0,TOV0
 
 	INC R20
-	CPI R20,10
+	CPI R20,10 //para que cumpla el segundo
 	BRNE LOOP
-	CLR R20
+	;CLR R20
 
 	OUT PORTB,R20
+	CLR R20
 	RJMP LOOP
 
 btn1:
@@ -137,9 +138,11 @@ resta:
 	DEC count
 	CPI count,0xFF
 	BREQ reset
-	LDI ZH, HIGH(TABLA7SEG<<1)
-	LDI ZL, LOW(TABLA7SEG<<1)
-	ADD ZL,count
+	;LDI ZH, HIGH(TABLA7SEG<<1)
+	;LDI ZL, LOW(TABLA7SEG<<1)
+	LDI R16,1
+	SUB ZL,R16
+	;ADD ZL,count
 	LPM r16,Z
 	LSL R16
 	OUT PORTD,R16
