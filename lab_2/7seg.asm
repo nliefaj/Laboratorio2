@@ -1,14 +1,4 @@
-//******************************************************************
-/*
-Universidad del VAlle de Guatemala
-IE2023:Programacion de microcontroladores
-Proyecto: laboratorio2
-Creado: 2/7/2024 2:37:54 PM
-Autor: lefaj : Nathalie Fajardo
-*/
-//*******************************************************************
-//ENCABEZADO
-//*******************************************************************
+;SEGSOLO
 .include "M328PDEF.inc"
 .cseg //comienza el codigo linea 0
 .org 0x00
@@ -19,7 +9,6 @@ LDI R16, LOW(RAMEND)
 OUT SPL,R16
 LDI R17,HIGH (RAMEND)
 OUT SPH, R17
-.DEF count=R24
 //*******************************************************************
 //TABLA DE VALORES
 //*******************************************************************
@@ -45,9 +34,6 @@ SETUP:
 	SBI DDRB,PB4 ;HABILITANDO PB1 COMO SALIDA
 	CBI PORTB, PB4 ;apagar el pb1 del puerto b
 
-	SBI DDRB,PB5 ;HABILITANDO PB1 COMO SALIDA
-	CBI PORTB, PB5 ;apagar el pb1 del puerto b
-
 	LDI R16,0b1111_1110
 	OUT DDRD,r16; habilita el portD como salida
 
@@ -70,27 +56,13 @@ LOOP:
 	SBRS r16,PC0 
 	RJMP btn1
 
-	IN r16, PINC//PinC presionado o no
+	BRNE LOOP
+
+	/*IN r16, PINC//PinC presionado o no
 	SBRS r16,PC1 
 	RJMP btn2
 
-reloj:
-	IN R16,TIFR0
-	SBRS R16,TOV0
-	BRNE LOOP
-
-
-mostrar:
-	LDI R16,100 // carga el valor de desbordamiento
-	OUT TCNT0,R16; carga el valor inicial al contador
-
-	SBI TIFR0,TOV0
-
-	INC R20
-	CPI R20,100
-	BRNE LOOP
-	CLR R20
-	OUT PORTB,R20
+	RJMP LOOP*/
 
 btn1:
 	NOP
@@ -98,22 +70,13 @@ btn1:
 	SBIS PINC, PC0
 	JMP btn1
 	RJMP suma //llama a etiqueta de incrementar contador
-
+/*
 btn2:
 	NOP
-	CALL delaybounce//espera a que el botón no esté presionado, de lo contrario sigue con el resto
-	SBIS PINC, PC0
+	CALL delaybounce
+	SBIS PINC, PC1
 	JMP btn2
-	RJMP resta //llama a etiqueta de incrementar contador
-
-timer_0:
-	LDI R16,(1<<CS02)|(1<<CS00)//configura el prescaler a 1024 //nombre del bit que quiero encender
-	OUT TCCR0B,R16
-	
-	LDI R16,100
-	OUT TCNT0,R16
-	
-	RET 
+	RJMP decr*/
 
 delaybounce:
 	LDI r16,100
@@ -124,54 +87,12 @@ delaybounce:
 
 //Sumador de 7SEG
 suma:
-	INC count
-	CPI count,0b0001_0000
-	BRGE overflow
 	LDI R23,1
 	ADD ZL,R23
-	LPM R16,Z //Load from program memory R16
+	LPM r16,Z //Load from program memory
 	LSL R16
 	OUT PORTD,R16
-	;CALL COMPARE
-	RJMP LOOP
-	
-//resta de 7SEG
-resta:
-	LDI R23,1
-	SUB ZL,R23
-	DEC count
-	CPI count,0xFF
-	BREQ reset
-	LPM r16,Z
-	LSL R16
-	OUT PORTD,R16
-	;CALL COMPARE
-	RJMP LOOP
+	RJMP loop
 
-overflow:
-	LDI count,0b0000
-	LDI R16,15
-	SUB ZL,R16
-	LPM R16,Z
-	LSL R16
-	OUT PORTD,R16
-	RJMP LOOP
-
-reset:
-	LDI count,0b0000
-	LDI R16,15
-	ADD ZL,R16
-	LPM R16,Z
-	LSL R16
-	OUT PORTD,R16
-	RJMP LOOP
-
-/*COMPARE:
-	CP R20,R24
-	BREQ LD_COMP
-	JMP LOOP
-
-LD_COMP:
-	SBIS*/
 
 
